@@ -1,3 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body{
+    background:url('../assets/images/polygon-scatter-haikei.svg');
+    background-size: cover;
+}
+
+.bold{
+    font-weight: bold;
+}
+.italic{
+    font-style: italic;
+}
