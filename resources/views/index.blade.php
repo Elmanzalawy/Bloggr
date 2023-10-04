@@ -2,27 +2,7 @@
 
 @section('css')
     <style>
-        #hero-section{
-            margin-top: -56px;
-            padding-top: 56px;
-            min-height: 100vh;
-            /* background: url('https://via.placeholder.com/1600x900') center no-repeat; */
-            /* background-size: cover; */
-            display: inline;
 
-        }
-
-        #hero-section-content-wrapper{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            min-height: calc(100vh - 56px);
-        }
-
-        #hero-message h1{
-            font-size: 5rem;
-            font-weight: bold;
-        }
 
     </style>
 @endsection

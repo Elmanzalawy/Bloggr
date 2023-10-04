@@ -8,7 +8,7 @@ use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new #[Layout('layouts.guest')] class extends Component
+new #[Layout('layouts.app')] class extends Component
 {
     public string $name = '';
     public string $email = '';
@@ -33,53 +33,79 @@ new #[Layout('layouts.guest')] class extends Component
     }
 }; ?>
 
-<div>
-    <form wire:submit="register">
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+<div id="hero-section">
+    <div id="hero-section-content-wrapper" class="container">
+        <!-- Session Status -->
+        <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        <form wire:submit="register">
+            <h1 class="mb-5 text-center text-primary bold">{{ __('Register') }}</h1>
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-6">
+                    <div class="form-floating mb-3">
+                        <input id="name" class="form-control @error('name') is-invalid @enderror" type="name" name="name" required autofocus autocomplete="username" wire:model="name" placeholder="name@example.com">
+                        <label for="floatingInput">{{ __('Name') }}</label>
+                    </div>
+                    @error('name')
+                        <ul>
+                            @foreach ($errors->get('name') as $message)
+                                <li class="invalid-feedbackd"><span class="text-danger">{{ $message }}</span></li>
+                            @endforeach
+                        </ul>
+                    @enderror
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+                    <div class="form-floating mb-3">
+                        <input id="email" class="form-control @error('email') is-invalid @enderror" type="email" name="email" required autofocus autocomplete="username" wire:model="email" placeholder="name@example.com">
+                        <label for="floatingInput">{{ __('Email') }}</label>
+                    </div>
+                    @error('email')
+                        <ul>
+                            @foreach ($errors->get('email') as $message)
+                                <li class="invalid-feedbackd"><span class="text-danger">{{ $message }}</span></li>
+                            @endforeach
+                        </ul>
+                    @enderror
 
-            <x-text-input wire:model="password" id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+                    <div class="form-floating mb-3">
+                        <input wire:model="password" id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password"  autocomplete="new-password">
+                        <label for="floatingPassword">{{ __('Password') }}</label>
+                    </div>
+                    @error('password')
+                        <ul>
+                            @foreach ($errors->get('password') as $message)
+                                <li class="invalid-feedbackd"><span class="text-danger">{{ $message }}</span></li>
+                            @endforeach
+                        </ul>
+                    @enderror
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                    <div class="form-floating mb-3">
+                        <input wire:model="password_confirmation" id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="Password_confirmation"  autocomplete="new-password">
+                        <label for="floatingPassword_confirmation">{{ __('Confirm Password') }}</label>
+                    </div>
+                    @error('password_confirmation')
+                        <ul>
+                            @foreach ($errors->get('password_confirmation') as $message)
+                                <li class="invalid-feedbackd"><span class="text-danger">{{ $message }}</span></li>
+                            @endforeach
+                        </ul>
+                    @enderror
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" wire:model="remember" name="remember" id="remember" type="checkbox">
+                        <label class="form-check-label" for="remember">
+                            {{ __('Remember me') }}
+                        </label>
+                    </div>
 
-            <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                    <button class="btn btn-primary" >{{ __('Register') }}</button>
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}" wire:navigate>
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
+                    @if (Route::has('password.request'))
+                        <a class="ms-2" href="{{ route('password.request') }}" wire:navigate>
+                            {{ __('Forgot your password?') }}
+                        </a>
+                    @endif
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ env('APP_NAME') }}</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -19,10 +20,14 @@
     </head>
 
     <body>
-        <div id="app">
+        <div id="app" style="padding-top:56px;">
             @include('includes.navbar')
             {{-- Content goes here.. --}}
             @yield('content')
+            @isset($slot)
+                {{ $slot }}
+            @endisset
+
         </div>
 
         @yield('javascript')
