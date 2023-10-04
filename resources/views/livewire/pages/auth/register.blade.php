@@ -90,13 +90,6 @@ new #[Layout('layouts.app')] class extends Component
                         </ul>
                     @enderror
 
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" wire:model="remember" name="remember" id="remember" type="checkbox">
-                        <label class="form-check-label" for="remember">
-                            {{ __('Remember me') }}
-                        </label>
-                    </div>
-
                     <button class="btn btn-primary" >{{ __('Register') }}</button>
 
                     @if (Route::has('password.request'))
