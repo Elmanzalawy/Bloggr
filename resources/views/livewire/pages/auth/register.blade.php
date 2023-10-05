@@ -35,60 +35,18 @@ new #[Layout('layouts.app')] class extends Component
 
 <div id="hero-section">
     <div id="hero-section-content-wrapper" class="container">
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <form wire:submit="register">
             <h1 class="mb-5 text-center text-primary bold">{{ __('Register') }}</h1>
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-md-6">
-                    <div class="form-floating mb-3">
-                        <input id="name" class="form-control @error('name') is-invalid @enderror" type="name" name="name" required autofocus autocomplete="username" wire:model="name" placeholder="name@example.com">
-                        <label for="floatingInput">{{ __('Name') }}</label>
-                    </div>
-                    @error('name')
-                        <ul>
-                            @foreach ($errors->get('name') as $message)
-                                <li class="invalid-feedbackd"><span class="text-danger">{{ $message }}</span></li>
-                            @endforeach
-                        </ul>
-                    @enderror
+                    <x-input id="name" text="{{ __('Name') }}" type="name" name="name" required autofocus autocomplete="username" wire:model="name" placeholder="name@example.com"></x-input>
 
-                    <div class="form-floating mb-3">
-                        <input id="email" class="form-control @error('email') is-invalid @enderror" type="email" name="email" required autofocus autocomplete="username" wire:model="email" placeholder="name@example.com">
-                        <label for="floatingInput">{{ __('Email') }}</label>
-                    </div>
-                    @error('email')
-                        <ul>
-                            @foreach ($errors->get('email') as $message)
-                                <li class="invalid-feedbackd"><span class="text-danger">{{ $message }}</span></li>
-                            @endforeach
-                        </ul>
-                    @enderror
+                    <x-input id="email" text="{{ __('Email') }}" type="email" name="email" required autocomplete="email" wire:model="email" placeholder="name@example.com"></x-input>
 
-                    <div class="form-floating mb-3">
-                        <input wire:model="password" id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password"  autocomplete="new-password">
-                        <label for="floatingPassword">{{ __('Password') }}</label>
-                    </div>
-                    @error('password')
-                        <ul>
-                            @foreach ($errors->get('password') as $message)
-                                <li class="invalid-feedbackd"><span class="text-danger">{{ $message }}</span></li>
-                            @endforeach
-                        </ul>
-                    @enderror
+                    <x-input id="password" text="{{ __('password') }}" type="password" name="password" required autocomplete="new-password" wire:model="password" placeholder="password"></x-input>
 
-                    <div class="form-floating mb-3">
-                        <input wire:model="password_confirmation" id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="Password_confirmation"  autocomplete="new-password">
-                        <label for="floatingPassword_confirmation">{{ __('Confirm Password') }}</label>
-                    </div>
-                    @error('password_confirmation')
-                        <ul>
-                            @foreach ($errors->get('password_confirmation') as $message)
-                                <li class="invalid-feedbackd"><span class="text-danger">{{ $message }}</span></li>
-                            @endforeach
-                        </ul>
-                    @enderror
+                    <x-input id="password_confirmation" text="{{ __('Confirm Password') }}" type="password" name="password_confirmation" required autocomplete="new-password" wire:model="password_confirmation" placeholder="password_confirmation"></x-input>
 
                     <button class="btn btn-primary" >{{ __('Register') }}</button>
 

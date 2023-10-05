@@ -71,43 +71,15 @@ new #[Layout('layouts.app')] class extends Component
 
 <div id="hero-section">
     <div id="hero-section-content-wrapper" class="container">
-        <!-- Session Status -->
-        {{-- <x-auth-session-status class="mb-4" :status="session('status')" /> --}}
-
         <form wire:submit="login">
             <h1 class="mb-5 text-center text-primary bold">Login</h1>
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-md-6">
-                    <div class="form-floating mb-3">
-                        <input id="email" class="form-control @error('email') is-invalid @enderror" type="email" name="email" required autofocus autocomplete="username" wire:model="email" placeholder="name@example.com">
-                        <label for="floatingInput">{{ __('Email') }}</label>
-                    </div>
-                    @error('email')
-                        <ul>
-                            @foreach ($errors->get('email') as $message)
-                                <li class="invalid-feedbackd"><span class="text-danger">{{ $message }}</span></li>
-                            @endforeach
-                        </ul>
-                    @enderror
+                    <x-input id="email" name="email" type="email" text="{{ __('Email') }}" required autofocus autocomplete="username" wire:model="email" placeholder="name@example.com"></x-input>
 
-                    <div class="form-floating mb-3">
-                        <input wire:model="password" id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password"  autocomplete="current-password">
-                        <label for="floatingPassword">{{ __('Password') }}</label>
-                    </div>
-                    @error('password')
-                        <ul>
-                            @foreach ($errors->get('password') as $message)
-                                <li class="invalid-feedbackd"><span class="text-danger">{{ $message }}</span></li>
-                            @endforeach
-                        </ul>
-                    @enderror
+                    <x-input id="password" name="password" type="password" text="{{ __('Password') }}" required autocomplete="current-password" wire:model="password" placeholder="Password"></x-input>
 
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" wire:model="remember" name="remember" id="remember" type="checkbox">
-                        <label class="form-check-label" for="remember">
-                            {{ __('Remember me') }}
-                        </label>
-                    </div>
+                    <x-checkbox wire:model="remember" name="remember" id="remember" text="{{ __('Remember me') }}"></x-checkbox>
 
                     <button class="btn btn-primary" >{{ __('Log in') }}</button>
 

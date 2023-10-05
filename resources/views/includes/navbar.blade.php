@@ -10,29 +10,19 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">Action 1</a>
-                        <a class="dropdown-item" href="#">Action 2</a>
-                    </div>
-                </li>
-            </ul>
-            <form class="d-flex my-2 my-lg-0">
+            <form class="d-flex ms-auto my-2 my-lg-0">
                 <input class="form-control me-sm-2" type="text" placeholder="Search">
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
             </form>
 
             @auth
-                {{-- <a href="{{ url('/dashboard') }}" class="ms-2 btn btn-outline-primary" wire:navigate>Dashboard</a> --}}
-                <a href="{{ route('logout') }}" class="ms-2 btn btn-outline-primary" wire:navigate>Logout</a>
+                <div class="nav-item dropdown ms-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->name }}</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="{{ route('profile') }}" wire:navigate>Profile</a>
+                        <a href="{{ route('logout') }}" class="dropdown-item" wire:navigate>Logout</a>
+                    </div>
+                </div>
             @else
                 <a href="{{ route('login') }}" class="ms-2 btn btn-primary" wire:navigate>Login</a>
 
