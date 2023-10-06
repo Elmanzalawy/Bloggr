@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->longText('body');
             $table->string('thumbnail');
+            $table->integer('read_time')->nullable();
+            $table->boolean('is_published')->default(0);
             $table->unsignedBigInteger('author_id');
             $table->foreign('author_id')->references('id')->on('users');
             $table->softDeletes();

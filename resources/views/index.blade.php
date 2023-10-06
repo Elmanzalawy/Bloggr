@@ -16,7 +16,13 @@
         </div>
 
         <div id="latest-posts" class="row gx-5 d-flex align-items-stretch">
-            <h1 class="text-dark my-3">Latest posts</h1>
+
+            <div class="row ms-2 px-2">
+                <div class=" col-12 d-flex justify-content-between align-items-center">
+                    <h1 class="text-dark my-3">Latest posts</h1>
+                    <a class="text-primary me-2" href="{{ route('articles.index') }}" wire:navigate>View all &rightarrow;</a>
+                </div>
+            </div>
             <div class="col-12 col-sm-6 ">
                 <img src="https://via.placeholder.com/1600x900" class="w-100" alt="">
             </div>

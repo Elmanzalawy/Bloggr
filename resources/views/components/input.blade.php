@@ -4,7 +4,7 @@
     @error($attributes['name'])
     <ul>
         @foreach ($errors->get($attributes['name']) as $message)
-            <li class="invalid-feedbackd"><span class="text-danger">{{ $message }}</span></li>
+            <li class="invalid-feedback"><span class="text-danger">{{ $message }}</span></li>
         @endforeach
     </ul>
     @enderror

@@ -21,6 +21,7 @@ class ArticleFactory extends Factory
             'title' => fake()->sentence(),
             'body' => fake()->sentence(500),
             'thumbnail' => fake()->imageUrl(),
+            'read_time' => random_int(5, 22),
             'author_id' => User::factory(),
         ];
     }

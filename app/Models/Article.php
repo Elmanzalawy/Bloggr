@@ -14,6 +14,12 @@ class Article extends Model
         'title',
         'body',
         'thumbnail',
+        'read_time',
         'author_id',
     ];
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id', 'id');
+    }
 }

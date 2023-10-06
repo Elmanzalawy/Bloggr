@@ -1,6 +1,7 @@
 body{
     background:url('../assets/images/polygon-scatter-haikei.svg');
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .bold{
