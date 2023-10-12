@@ -18,6 +18,7 @@ class Article extends Model implements HasMedia
         'title',
         'slug',
         'body',
+        'is_published',
         'read_time',
         'author_id',
     ];

@@ -40,7 +40,7 @@ new #[Layout('layouts.app')] class extends Component
             <h1 class="mb-5 text-center text-primary bold">{{ __('Register') }}</h1>
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-md-6">
-                    <x-input id="name" text="{{ __('Name') }}" type="name" name="name" required autofocus autocomplete="username" wire:model="name" placeholder="name@example.com"></x-input>
+                    <x-input id="name" text="{{ __('Name') }}" type="name" name="name" required autofocus autocomplete="username" wire:model="name" placeholder="name"></x-input>
 
                     <x-input id="email" text="{{ __('Email') }}" type="email" name="email" required autocomplete="email" wire:model="email" placeholder="name@example.com"></x-input>
 

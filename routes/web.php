@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Article\ArticleEditor;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +23,10 @@ Route::view('dashboard', 'dashboard')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('articles/new', ArticleEditor::class)->name('articles.create');
+    Route::get('articles/{slug}', ArticleEditor::class)->name('articles.edit');
+});
 
 require __DIR__.'/auth.php';
