@@ -2,6 +2,7 @@
 
 use App\Livewire\Article\ArticleEditor;
 use App\Livewire\Article\ListArticles;
+use App\Livewire\Article\ViewArticle;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +29,8 @@ Route::view('profile', 'profile')
 Route::middleware(['auth'])->group(function(){
     Route::get('articles', ListArticles::class)->name('articles.index');
     Route::get('articles/new', ArticleEditor::class)->name('articles.create');
-    Route::get('articles/{slug}', ArticleEditor::class)->name('articles.edit');
+    Route::get('articles/{slug}', ViewArticle::class)->name('articles.show');
+    Route::get('articles/{slug}/edit', ArticleEditor::class)->name('articles.edit');
 });
 
 require __DIR__.'/auth.php';

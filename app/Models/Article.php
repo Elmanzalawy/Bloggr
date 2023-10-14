@@ -40,4 +40,9 @@ class Article extends Model implements HasMedia
     {
         return $this->belongsTo(User::class, 'author_id', 'id');
     }
+
+    public function scopePublished()
+    {
+        return $this->where('is_published', true);
+    }
 }

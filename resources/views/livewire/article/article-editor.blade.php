@@ -1,5 +1,11 @@
 <div class="container pt-4">
-    <h2 class="text-dark mb-4">{{ $article->title ?? 'Add Article' }}</h2>
+    <div class="mb-3 d-flex align-items-center">
+        <h2 class="text-dark d-inline-block">{{ $article->title ?? 'Add Article' }}
+        </h2>
+        @if($article && !$article->is_published)
+            <span class="ms-2 badge text-bg-secondary">Draft</span>
+        @endif
+    </div>
     <div class="row">
         <div class="col-lg-9">
             <div class="form-group" wire:ignore>
@@ -34,7 +40,7 @@
                 </div>
                 <div class="card-footer d-flex justify-content-between">
                     @isset($article)
-                        <button class="btn btn-primary" wire:loading.class='disabled' wire:click="updateArticle()">Save</button>
+                        <button class="btn btn-primary" wire:loading.class='disabled' wire:click="updateArticle()">Publish</button>
                         <button class="btn btn-outline-primary" wire:loading.class='disabled' wire:click="updateArticle(false)">Save as Draft</button>
                     @else
                         <button class="btn btn-primary" wire:loading.class='disabled' wire:click="storeArticle()">Publish</button>
