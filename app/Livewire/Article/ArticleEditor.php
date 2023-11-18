@@ -20,6 +20,8 @@ class ArticleEditor extends Component
 
     public $body;
 
+    public $read_time;
+
     public $thumbnail;
 
     public function mount($slug = null)
@@ -34,6 +36,7 @@ class ArticleEditor extends Component
     #[Layout('layouts.app')]
     public function render()
     {
+        info($this->read_time);
         return view('livewire.article.article-editor');
     }
 
@@ -42,6 +45,7 @@ class ArticleEditor extends Component
         $this->validate([
             'title' => 'string|required|min:10|unique:articles,title',
             'body' => 'string|required|min:10',
+            'read_time' => 'required|numeric',
             'thumbnail' => 'image|required|max:1024',
         ]);
 
@@ -69,6 +73,7 @@ class ArticleEditor extends Component
                 ValidationRule::unique('articles')->ignore($this->article->id),
             ],
             'body' => 'string|required|min:10',
+            'read_time' => 'required|numeric',
             'thumbnail' => 'nullable|image|max:1024',
         ]);
 
@@ -76,6 +81,7 @@ class ArticleEditor extends Component
             'title' => $this->title,
             'slug' => Str::slug($this->title),
             'body' => $this->body,
+            'read_time' => $this->read_time,
             'is_published' => $publish,
             'author_id' => auth()->id(),
         ]);

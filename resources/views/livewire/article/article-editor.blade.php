@@ -46,7 +46,6 @@
                         <button class="btn btn-primary" wire:loading.class='disabled' wire:click="storeArticle()">Publish</button>
                         <button class="btn btn-outline-primary" wire:loading.class='disabled' wire:click="storeArticle(false)">Save as Draft</button>
                     @endisset
-
                  </div>
             </div>
         </div>
@@ -60,8 +59,15 @@
                 ClassicEditor
                 .create(document.querySelector('#body'))
                 .then(editor => {
+                    const wordsPerMinute = 200;
+
                     editor.model.document.on('change:data', () => {
-                    @this.set('body', editor.getData());
+                        let data = editor.getData();
+                        let wordCount = data.split(' ').length
+                        const readTime = Math.ceil(wordCount / wordsPerMinute);
+
+                        @this.set('body', data);
+                        @this.set('read_time', readTime);
                     })
                 })
                 .catch(error => {
