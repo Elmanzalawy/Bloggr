@@ -33,7 +33,11 @@ class Article extends Model implements HasMedia
 
     public function getThumbnailAttribute()
     {
-        return $this->getFirstMedia()->getUrl('preview');
+        if (app()->hasDebugModeEnabled()) {
+            return fake()->imageUrl();
+        }else{
+            return $this->getFirstMedia()->getUrl('preview');
+        }
     }
 
     public function author()
